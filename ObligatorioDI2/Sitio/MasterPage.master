@@ -1,0 +1,115 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 156px;
+        }
+        .auto-style2 {
+            width: 159px;
+        }
+        .auto-style3 {
+            
+        }
+        .auto-style4 {
+            width: 159px;
+            
+        }
+        .auto-style5 {
+            width: 156px;
+            
+        }
+        .auto-style6 {
+           
+        }
+        .auto-style9 {
+            margin-left: 195px;
+        }
+        .auto-style10 {
+            
+            width: 361px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table style="width:100%;">
+            <tr>
+    <td class="auto-style5">
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/ABMCategoria.aspx">ABM Categoria</asp:HyperLink>
+    </td>
+
+    
+    <td class="auto-style4">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <asp:Menu ID="Menu2" runat="server" CssClass="menu-grande" Orientation="Horizontal">
+                <Items>
+                    <asp:MenuItem Text="Bandejas de Mensajes  ||" Value="Nuevo elemento">
+                        <asp:MenuItem NavigateUrl="~/BandejaSalida.aspx" Text="Bandeja de Salida" Value="~/BandejaSalida.aspx"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/BandejaEntrada.aspx" Text="Bandeja de Entrada" Value="~/BandejaEntrada.aspx"></asp:MenuItem>
+                    </asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </div>
+    </td>
+
+    
+    <td class="auto-style10">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <asp:Menu ID="Menu1" runat="server" CssClass="menu-grande" Orientation="Horizontal">
+                <Items>
+                    <asp:MenuItem Text="Acciones del Usuario  ||" Value="Nuevo elemento">
+                        <asp:MenuItem NavigateUrl="~/BajaUsuario.aspx" Text="Baja de Usuario" Value="~/BajaUsuario.aspx"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/ModificarContraseñaUsuario.aspx" Text="Modificar Contraseña" Value="~/ModificarContraseñaUsuario.aspx"></asp:MenuItem>
+                    </asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </div>
+    </td>
+
+    
+    <td class="auto-style3">
+        <div style="display:flex; align-items:center; gap:15px;">
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/AltaMensaje.aspx" Style="font-size:24px;">Alta de Mensaje</asp:HyperLink>
+            <asp:Button ID="BtnDeslogueo" runat="server" OnClick="BtnDeslogueo_Click" Text="Deslogueo" CssClass="auto-style9" />
+        </div>
+    </td>
+</tr>
+            
+            <tr>
+                <td class="auto-style1">
+                    &nbsp;</td>
+                <td class="auto-style2">
+                    &nbsp;</td>
+                <td colspan="2">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+            <p>
+                <br />
+            </p>
+            <p>
+            </p>
+            <p>
+            </p>
+        
+        </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style6" colspan="4">&nbsp;</td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

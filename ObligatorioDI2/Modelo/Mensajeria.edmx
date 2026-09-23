@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Diseño2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="CodCat" />
+          </Key>
+          <Property Name="CodCat" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="NomCat" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mensaje">
+          <Key>
+            <PropertyRef Name="NumIdenti" />
+          </Key>
+          <Property Name="NumIdenti" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FyHEnvio" Type="datetime" Nullable="false" />
+          <Property Name="Asunto" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Texto" Type="varchar(max)" Nullable="false" />
+          <Property Name="NomUsuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="FechaCaducidad" Type="datetime" Nullable="false" />
+          <Property Name="CodCat" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recibe">
+          <Key>
+            <PropertyRef Name="NomUsuario" />
+            <PropertyRef Name="NumIdenti" />
+          </Key>
+          <Property Name="NomUsuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NumIdenti" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="NomUsuario" />
+          </Key>
+          <Property Name="NomUsuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="60" />
+          <Property Name="FechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="NomCompleto" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <Association Name="FK__Mensaje__CodCat__5535A963">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="CodCat" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="CodCat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mensaje__NomUsua__534D60F1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="NomUsuario" />
+            </Principal>
+            <Dependent Role="Mensaje">
+              <PropertyRef Name="NomUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recibe__NomUsuar__5812160E">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Recibe" Type="Self.Recibe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="NomUsuario" />
+            </Principal>
+            <Dependent Role="Recibe">
+              <PropertyRef Name="NomUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recibe__NumIdent__59063A47">
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="1" />
+          <End Role="Recibe" Type="Self.Recibe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mensaje">
+              <PropertyRef Name="NumIdenti" />
+            </Principal>
+            <Dependent Role="Recibe">
+              <PropertyRef Name="NumIdenti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Diseño2ModelStoreContainer">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mensaje" EntityType="Self.Mensaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recibe" EntityType="Self.Recibe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Mensaje__CodCat__5535A963" Association="Self.FK__Mensaje__CodCat__5535A963">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mensaje__NomUsua__534D60F1" Association="Self.FK__Mensaje__NomUsua__534D60F1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recibe__NomUsuar__5812160E" Association="Self.FK__Recibe__NomUsuar__5812160E">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Recibe" EntitySet="Recibe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recibe__NumIdent__59063A47" Association="Self.FK__Recibe__NumIdent__59063A47">
+            <End Role="Mensaje" EntitySet="Mensaje" />
+            <End Role="Recibe" EntitySet="Recibe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Diseño2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="CodCat" />
+          </Key>
+          <Property Name="CodCat" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomCat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mensaje">
+          <Key>
+            <PropertyRef Name="NumIdenti" />
+          </Key>
+          <Property Name="NumIdenti" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FyHEnvio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Asunto" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaCaducidad" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK__Mensaje__CodCat__5535A963" FromRole="Mensaje" ToRole="Categoria" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Mensaje__NomUsua__534D60F1" FromRole="Mensaje" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.Recibe" FromRole="Mensaje" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="NomUsuario" />
+          </Key>
+          <Property Name="NomUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NomCompleto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Mensaje__CodCat__5535A963">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Mensaje__NomUsua__534D60F1">
+          <End Type="Self.Usuario" Multiplicity="1" Role="Usuario" />
+          <End Type="Self.Mensaje" Multiplicity="*" Role="Mensaje" />
+        </Association>
+        <Association Name="Recibe">
+          <End Type="Self.Usuario" Multiplicity="*" Role="Usuario" />
+          <End Type="Self.Mensaje" Multiplicity="*" Role="Mensaje" />
+        </Association>
+        <EntityContainer Name="Diseño2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Mensaje" EntityType="Self.Mensaje" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__Mensaje__CodCat__5535A963" Association="Self.FK__Mensaje__CodCat__5535A963">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Mensaje" EntitySet="Mensaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mensaje__NomUsua__534D60F1" Association="Self.FK__Mensaje__NomUsua__534D60F1">
+            <End EntitySet="Usuario" Role="Usuario" />
+            <End EntitySet="Mensaje" Role="Mensaje" />
+          </AssociationSet>
+          <AssociationSet Name="Recibe" Association="Self.Recibe">
+            <End EntitySet="Usuario" Role="Usuario" />
+            <End EntitySet="Mensaje" Role="Mensaje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Diseño2ModelStoreContainer" CdmEntityContainer="Diseño2Entities">
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="Diseño2Model.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="CodCat" ColumnName="CodCat" />
+                <ScalarProperty Name="NomCat" ColumnName="NomCat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mensaje">
+            <EntityTypeMapping TypeName="Diseño2Model.Mensaje">
+              <MappingFragment StoreEntitySet="Mensaje">
+                <ScalarProperty Name="NumIdenti" ColumnName="NumIdenti" />
+                <ScalarProperty Name="FyHEnvio" ColumnName="FyHEnvio" />
+                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="FechaCaducidad" ColumnName="FechaCaducidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="Diseño2Model.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="NomUsuario" ColumnName="NomUsuario" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="NomCompleto" ColumnName="NomCompleto" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK__Mensaje__CodCat__5535A963" TypeName="Diseño2Model.FK__Mensaje__CodCat__5535A963" StoreEntitySet="Mensaje">
+            <EndProperty Name="Categoria">
+              <ScalarProperty Name="CodCat" ColumnName="CodCat" />
+            </EndProperty>
+            <EndProperty Name="Mensaje">
+              <ScalarProperty Name="NumIdenti" ColumnName="NumIdenti" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Mensaje__NomUsua__534D60F1" TypeName="Diseño2Model.FK__Mensaje__NomUsua__534D60F1" StoreEntitySet="Mensaje">
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="NomUsuario" ColumnName="NomUsuario" />
+            </EndProperty>
+            <EndProperty Name="Mensaje">
+              <ScalarProperty Name="NumIdenti" ColumnName="NumIdenti" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Recibe" TypeName="Diseño2Model.Recibe" StoreEntitySet="Recibe">
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="NomUsuario" ColumnName="NomUsuario" />
+            </EndProperty>
+            <EndProperty Name="Mensaje">
+              <ScalarProperty Name="NumIdenti" ColumnName="NumIdenti" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
